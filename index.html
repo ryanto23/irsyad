@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dunia Ceria TK & SD Kelas 1 - Membaca & Berhitung</title>
+  <link href="https://googleapis.com" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Fredoka', sans-serif; }
+    body { background: linear-gradient(180deg, #e0f2fe 0%, #fef9c3 100%); min-height: 100vh; color: #1e293b; padding-bottom: 30px; }
+    header { background: #ffffff; padding: 14px 16px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-bottom: 4px solid #38bdf8; position: sticky; top: 0; z-index: 10; }
+    header h1 { font-size: 1.35rem; color: #0284c7; }
+    .container { max-width: 500px; margin: 18px auto; padding: 0 16px; }
+    .card { background: #ffffff; border-radius: 24px; padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.07); border: 3px solid #e2e8f0; margin-bottom: 16px; text-align: center; }
+    .menu-btn { width: 100%; border: none; border-radius: 22px; padding: 18px; margin-bottom: 14px; color: #fff; font-size: 1.2rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 6px 0 rgba(0,0,0,0.15); transition: transform 0.1s; }
+    .menu-btn:active { transform: translateY(4px); box-shadow: none; }
+    .bg-baca { background: linear-gradient(135deg, #f43f5e, #fb7185); }
+    .bg-hitung { background: linear-gradient(135deg, #10b981, #34d399); }
+    .bg-bentuk { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+    .bg-kembali { background: #f1f5f9; color: #475569; border: 2px solid #cbd5e1; padding: 8px 16px; border-radius: 14px; font-size: 0.95rem; font-weight: 700; cursor: pointer; margin-bottom: 12px; }
+    .btn-suara { background: #fef08a; color: #854d0e; border: 3px solid #facc15; padding: 10px 18px; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; margin: 8px 0 14px; display: inline-flex; align-items: center; gap: 8px; }
+    .visual-box { background: #f8fafc; border: 3px dashed #bae6fd; border-radius: 20px; padding: 18px; margin: 10px 0 16px; font-size: 2.6rem; line-height: 1.4; letter-spacing: 4px; }
+    .suku-kata { font-size: 2.4rem; font-weight: 700; color: #e11d48; letter-spacing: 2px; }
+    .opsi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .opsi-btn { background: #ffffff; border: 3px solid #cbd5e1; border-radius: 18px; padding: 16px 10px; font-size: 1.35rem; font-weight: 700; color: #1e293b; cursor: pointer; box-shadow: 0 4px 0 #cbd5e1; }
+    .opsi-btn:active { transform: translateY(3px); box-shadow: none; }
+    .benar { background: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; box-shadow: 0 4px 0 #22c55e !important; }
+    .salah { background: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; box-shadow: 0 4px 0 #ef4444 !important; }
+    .star-bar { font-size: 1.25rem; font-weight: 700; color: #d97706; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌈 Dunia Ceria TK & SD Kelas 1</h1>
+  </header>
+  <div class="container" id="app"></div>
+
+    <script>
+    const bankMateri = {
+      membaca: [
+        { tanya: "Ayo baca gambar ini! Kata apa yang tepat?", visual: "🍎<br><span class='suku-kata'>a - pel</span>", baca: "Ayo baca gambar ini. A pel. Kata apa yang tepat?", opsi: ["Apel", "Jeruk", "Pisang", "Anggur"], kunci: 0 },
+        { tanya: "Hewan ini suka mengeong! Apa namanya?", visual: "🐱<br><span class='suku-kata'>ku - cing</span>", baca: "Hewan ini suka mengeong. Ku cing. Apa namanya?", opsi: ["Ayam", "Kucing", "Bebek", "Ikan"], kunci: 1 },
+        { tanya: "Kita membaca cerita di dalam ...", visual: "📘<br><span class='suku-kata'>bu - ku</span>", baca: "Kita membaca cerita di dalam bu ku. Pilih kata buku!", opsi: ["Bola", "Baju", "Buku", "Batu"], kunci: 2 },
+        { tanya: "Benda bulat untuk bermain sepak bola adalah ...", visual: "⚽<br><span class='suku-kata'>bo - la</span>", baca: "Benda bulat untuk bermain adalah bo la. Pilih kata bola!", opsi: ["Roda", "Meja", "Topi", "Bola"], kunci: 3 },
+        { tanya: "Kendaraan beroda empat di jalan raya adalah ...", visual: "🚗<br><span class='suku-kata'>mo - bil</span>", baca: "Kendaraan beroda empat adalah mo bil. Pilih kata mobil!", opsi: ["Mobil", "Motor", "Kapal", "Kereta"], kunci: 0 },
+        { tanya: "Bunga yang harum dan cantik berwarna merah adalah ...", visual: "🌹<br><span class='suku-kata'>bu - nga</span>", baca: "Bunga yang harum dan cantik. Bu nga. Pilih kata bunga!", opsi: ["Daun", "Bunga", "Pohon", "Rumput"], kunci: 1 }
+      ],
+      berhitung: [
+        { tanya: "Ada berapa banyak buah stroberi di bawah ini?", visual: "🍓 🍓 🍓", baca: "Ada berapa banyak buah stroberi di bawah ini?", opsi: ["2", "3", "4", "5"], kunci: 1 },
+        { tanya: "Hitung ada berapa banyak bintang kuning!", visual: "⭐ ⭐ ⭐ ⭐ ⭐", baca: "Hitung ada berapa banyak bintang kuning!", opsi: ["4", "6", "5", "7"], kunci: 2 },
+        { tanya: "2 apel ditambah 1 apel sama dengan berapa?", visual: "🍎🍎 + 🍎 = ?", baca: "Dua apel ditambah satu apel sama dengan berapa?", opsi: ["2", "4", "3", "5"], kunci: 2 },
+        { tanya: "Hitung semua ikan yang sedang berenang!", visual: "🐟 🐟 🐟 🐟 🐟 🐟 🐟", baca: "Hitung semua ikan yang sedang berenang!", opsi: ["6", "7", "8", "9"], kunci: 1 },
+        { tanya: "3 donat ditambah 2 donat sama dengan berapa?", visual: "🍩🍩🍩 + 🍩🍩 = ?", baca: "Tiga donat ditambah dua donat sama dengan berapa?", opsi: ["4", "5", "6", "7"], kunci: 1 },
+        { tanya: "Ada 4 balon, meletus 1 balon. Sisa berapa balon?", visual: "🎈🎈🎈🎈 - 💥 = ?", baca: "Ada empat balon, meletus satu balon. Sisa berapa balon?", opsi: ["2", "3", "4", "5"], kunci: 1 }
+      ],
+      bentuk: [
+        { tanya: "Bentuk apakah yang mirip dengan roda sepeda?", visual: "🟠", baca: "Bentuk apakah yang mirip dengan roda sepeda?", opsi: ["Segitiga", "Lingkaran", "Persegi", "Bintang"], kunci: 1 },
+        { tanya: "Bentuk apakah yang memiliki 3 sudut runcing?", visual: "🔺", baca: "Bentuk apakah yang memiliki tiga sudut runcing?", opsi: ["Segitiga", "Lingkaran", "Kotak", "Hati"], kunci: 0 },
+        { tanya: "Buah pisang yang sudah matang berwarna apa?", visual: "🍌", baca: "Buah pisang yang sudah matang berwarna apa?", opsi: ["Biru", "Ungu", "Kuning", "Hitam"], kunci: 2 },
+        { tanya: "Daun di pohon yang segar berwarna apa?", visual: "🌿", baca: "Daun di pohon yang segar berwarna apa?", opsi: ["Merah", "Hijau", "Putih", "Cokelat"], kunci: 1 },
+        { tanya: "Bentuk apakah yang berkelip di langit malam?", visual: "⭐", baca: "Bentuk apakah yang berkelip di langit malam?", opsi: ["Bintang", "Bulat", "Kotak", "Lonjong"], kunci: 0 }
+      ]
+    };
+
+          let kategoriAktif = "", daftarSoal = [], nomor = 0, bintang = 0, sudahJawab = false;
+
+    function ucapkan(teks) {
+      if (!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const suara = new SpeechSynthesisUtterance(teks);
+      suara.lang = "id-ID";
+      suara.rate = 0.9;
+      suara.pitch = 1.1;
+      window.speechSynthesis.speak(suara);
+    }
+
+    function tampilBeranda() {
+      window.speechSynthesis && window.speechSynthesis.cancel();
+      document.getElementById("app").innerHTML = `
+        <div class="card">
+          <div style="font-size:3.5rem; margin-bottom:6px;">🦁🐼🦊</div>
+          <h2 style="color:#0284c7; margin-bottom:6px;">Ayo Bermain Sambil Belajar!</h2>
+          <p style="color:#64748b; font-size:0.98rem;">Pilih permainan belajarmu hari ini:</p>
+        </div>
+        <button class="menu-btn bg-baca" onclick="mulaiBelajar('membaca')">
+          <span>🔤 Belajar Membaca</span><span>▶️</span>
+        </button>
+        <button class="menu-btn bg-hitung" onclick="mulaiBelajar('berhitung')">
+          <span>🔢 Belajar Berhitung</span><span>▶️</span>
+        </button>
+        <button class="menu-btn bg-bentuk" onclick="mulaiBelajar('bentuk')">
+          <span>🎨 Bentuk & Warna</span><span>▶️</span>
+        </button>`;
+    }
+
+    function mulaiBelajar(kat) {
+      kategoriAktif = kat;
+      daftarSoal = [...bankMateri[kat]];
+      nomor = 0;
+      bintang = 0;
+      tampilSoal();
+    }
+
+    function tampilSoal() {
+      sudahJawab = false;
+      const s = daftarSoal[nomor];
+      ucapkan(s.baca);
+      document.getElementById("app").innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <button class="bg-kembali" onclick="tampilBeranda()">🏠 Menu</button>
+          <div class="star-bar">⭐ Bintang: ${bintang}</div>
+        </div>
+        <div class="card">
+          <div style="font-size:0.9rem; color:#64748b; font-weight:700;">Soal ${nomor + 1} dari ${daftarSoal.length}</div>
+          <button class="btn-suara" onclick="ucapkan('${s.baca.replace(/'/g, "")}')">🔊 Dengarkan Soal</button>
+          <h3 style="font-size:1.15rem; color:#0f172a;">${s.tanya}</h3>
+          <div class="visual-box">${s.visual}</div>
+          <div class="opsi-grid">
+            ${s.opsi.map((op, i) => `<button id="op-${i}" class="opsi-btn" onclick="cekJawaban(${i})">${op}</button>`).join("")}
+          </div>
+          <div id="feedback" style="margin-top:16px; font-size:1.15rem; font-weight:700;"></div>
+        </div>`;
+    }
+
+          function cekJawaban(pilih) {
+      if (sudahJawab) return;
+      sudahJawab = true;
+      const s = daftarSoal[nomor];
+      const fb = document.getElementById("feedback");
+
+      if (pilih === s.kunci) {
+        bintang++;
+        document.getElementById("op-" + pilih).classList.add("benar");
+        fb.innerHTML = `<span style="color:#16a34a;">🎉 Hebat! Jawabanmu Benar! ⭐</span>`;
+        ucapkan("Hebat! Jawabanmu benar!");
+      } else {
+        document.getElementById("op-" + pilih).classList.add("salah");
+        document.getElementById("op-" + s.kunci).classList.add("benar");
+        fb.innerHTML = `<span style="color:#dc2626;">😊 Hampir tepat! Jawabannya: ${s.opsi[s.kunci]}</span>`;
+        ucapkan("Hampir tepat! Jawaban yang benar adalah " + s.opsi[s.kunci]);
+      }
+
+      setTimeout(() => {
+        nomor++;
+        if (nomor < daftarSoal.length) tampilSoal();
+        else tampilSelesai();
+      }, 2200);
+    }
+
+    function tampilSelesai() {
+      ucapkan("Selamat! Kamu telah menyelesaikan semua permainan belajar dengan hebat!");
+      document.getElementById("app").innerHTML = `
+        <div class="card" style="padding:30px 20px;">
+          <div style="font-size:4.5rem; margin-bottom:8px;">🏆</div>
+          <h2 style="color:#0284c7; font-size:1.6rem;">Selamat, Juara!</h2>
+          <p style="color:#475569; font-size:1.05rem; margin:8px 0;">Kamu berhasil mengumpulkan:</p>
+          <div style="font-size:2.4rem; font-weight:700; color:#f59e0b; margin:10px 0;">⭐ ${bintang} / ${daftarSoal.length} Bintang</div>
+          <button class="menu-btn bg-hitung" style="justify-content:center; margin-top:16px;" onclick="mulaiBelajar('${kategoriAktif}')">🔄 Main Lagi</button>
+          <button class="menu-btn bg-baca" style="justify-content:center;" onclick="tampilBeranda()">🏠 Pilih Permainan Lain</button>
+        </div>`;
+    }
+
+    tampilBeranda();
+  </script>
+</body>
+</html>
 
