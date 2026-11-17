@@ -40,8 +40,8 @@
     .suku-kata { font-size: 1.85rem; font-weight: 700; color: #e11d48; letter-spacing: 1px; display: block; margin-top: 4px; }
     .math-big { font-size: 2.15rem; font-weight: 700; color: #059669; letter-spacing: 1px; }
     .math-emoji { font-size: 1.35rem; display: block; margin-top: 6px; line-height: 1.4; }
-    .opsi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 8px; width: 100%; }
-    .opsi-btn { width: 100%; background: #ffffff; border: 3px solid #cbd5e1; border-radius: 16px; padding: 13px 6px; font-size: 1.08rem; font-weight: 700; color: #1e293b; cursor: pointer; box-shadow: 0 4px 0 #cbd5e1; touch-action: manipulation; min-height: 54px; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2; word-break: break-word; }
+    .opsi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; width: 100%; }
+    .opsi-btn { width: 100%; background: #ffffff; border: 3px solid #cbd5e1; border-radius: 16px; padding: 14px 8px; font-size: 1.15rem; font-weight: 700; color: #1e293b; cursor: pointer; box-shadow: 0 4px 0 #cbd5e1; touch-action: manipulation; height: 58px; display: flex; align-items: center; justify-content: center; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .opsi-btn:active { transform: translateY(3px); box-shadow: none; }
     .benar { background: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; box-shadow: 0 4px 0 #22c55e !important; }
     .salah { background: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; box-shadow: 0 4px 0 #ef4444 !important; }
@@ -61,7 +61,7 @@
       header h1 { font-size: 1.5rem; }
       .card { padding: 24px 20px; border-radius: 28px; }
       .menu-btn { font-size: 1.15rem; padding: 17px 20px; }
-      .opsi-btn { font-size: 1.3rem; padding: 16px 10px; }
+      .opsi-btn { font-size: 1.3rem; height: 64px; }
       .slot-huruf { width: 46px; height: 52px; font-size: 1.7rem; }
       .btn-huruf { width: 50px; height: 50px; font-size: 1.55rem; }
     }
@@ -197,15 +197,17 @@
       ["🥚", "te - lur", "Telur", "Makanan lonjong dari ayam"],
       ["🎂", "ku - e", "Kue", "Makanan manis ulang tahun"],
       ["🌙", "bu - lan", "Bulan", "Bersinar indah di malam hari"],
-      ["🏠", "ru - mah", "Rumah", "Tempat tinggal keluarga"]
+      ["🏠", "ru - mah", "Rumah", "Tempat tinggal keluarga"],
+      ["🪑", "kur - si", "Kursi", "Tempat untuk kita duduk"],
+      ["🛏️", "ka - sur", "Kasur", "Tempat empuk untuk tidur"]
     ];
 
     const dataMembacaSedang = [
-      ["🍌", "pi - sang", "Pisang", "Buah panjang berwarna kuning kesukaan monyet"],
-      ["🍊", "je - ruk", "Jeruk", "Buah bulat berwarna oranye kaya vitamin C"],
-      ["🍇", "ang - gur", "Anggur", "Buah kecil-kecil berwarna ungu yang manis"],
-      ["🍍", "na - nas", "Nanas", "Buah kuning bersisik bermahkota daun"],
-      ["🥭", "mang - ga", "Mangga", "Buah harum berdaging kuning oranye"],
+      ["🍌", "pi - sang", "Pisang", "Buah panjang kuning kesukaan monyet"],
+      ["🍊", "je - ruk", "Jeruk", "Buah bulat oranye kaya vitamin"],
+      ["🍇", "ang - gur", "Anggur", "Buah kecil ungu yang manis"],
+      ["🍍", "na - nas", "Nanas", "Buah kuning bersisik bermahkota"],
+      ["🥭", "mang - ga", "Mangga", "Buah harum berdaging kuning"],
       ["🥕", "wor - tel", "Wortel", "Sayuran oranye kesukaan kelinci"],
       ["🌽", "ja - gung", "Jagung", "Sayuran kuning berbiji manis"],
       ["🍅", "to - mat", "Tomat", "Buah merah bulat untuk sayur"],
@@ -219,37 +221,41 @@
       ["🚂", "ke - re - ta", "Kereta", "Kendaraan panjang di atas rel"],
       ["✈️", "pe - sa - wat", "Pesawat", "Kendaraan yang terbang di awan"],
       ["🚢", "ka - pal", "Kapal", "Kendaraan besar berlayar di laut"],
-      ["✏️", "pen - sil", "Pensil", "Alat tulis dari kayu untuk menulis"],
-      ["👟", "se - pa - tu", "Sepatu", "Alas kaki saat berangkat sekolah"]
+      ["✏️", "pen - sil", "Pensil", "Alat tulis kayu untuk menulis"],
+      ["👟", "se - pa - tu", "Sepatu", "Alas kaki saat berangkat sekolah"],
+      ["🐮", "sa - pi", "Sapi", "Hewan ternak penghasil susu segar"],
+      ["🐴", "ku - da", "Kuda", "Hewan gagah yang berlari kencang"]
     ];
 
     const dataMembacaSulit = [
       ["🍉", "se - mang - ka", "Semangka", "Buah besar berkulit hijau berdaging merah"],
-      ["🍓", "stro - be - ri", "Stroberi", "Buah merah mungil berbintik manis asam"],
+      ["🍓", "stro - be - ri", "Stroberi", "Buah merah mungil berbintik manis"],
       ["🐢", "ku - ra - ku - ra", "Kura-kura", "Hewan berjalan pelan membawa tempurung"],
-      ["🦋", "ku - pu - ku - pu", "Kupu-kupu", "Serangga bersayap indah terbang di taman"],
+      ["🦋", "ku - pu - ku - pu", "Kupu-kupu", "Serangga bersayap indah di taman"],
       ["☀️", "ma - ta - ha - ri", "Matahari", "Benda langit bersinar terang siang hari"],
-      ["🌈", "pe - la - ngi", "Pelangi", "Lengkungan warna-warni indah setelah hujan"],
+      ["🌈", "pe - la - ngi", "Pelangi", "Lengkungan warna-warni setelah hujan"],
       ["🦖", "di - no - sau - rus", "Dinosaurus", "Hewan purba raksasa zaman dahulu"],
       ["🐊", "bu - a - ya", "Buaya", "Reptil besar bergigi tajam di sungai"],
-      ["🐧", "pe - ngu - in", "Penguin", "Burung hitam putih di kutub bersalju"],
+      ["🐧", "pe - ngu - in", "Penguin", "Burung hitam putih di kutub salju"],
       ["🐬", "lum - ba - lum - ba", "Lumba-lumba", "Mamalia laut cerdas suka melompat"],
-      ["🐙", "gu - ri - ta", "Gurita", "Hewan laut dengan delapan tentakel"],
-      ["🦀", "ke - pi - ting", "Kepiting", "Hewan bercapit yang berjalan menyamping"],
+      ["🐙", "gu - ri - ta", "Gurita", "Hewan laut dengan delapan lengan"],
+      ["🦀", "ke - pi - ting", "Kepiting", "Hewan bercapit berjalan menyamping"],
       ["☂️", "pa - yung", "Payung", "Pelindung tubuh saat hujan turun"],
       ["⭐", "bin - tang", "Bintang", "Benda langit kecil berkelap-kelip"],
       ["🚑", "am - bu - lan", "Ambulans", "Mobil khusus penolong orang sakit"],
       ["🚁", "he - li - kop - ter", "Helikopter", "Pesawat berbaling-baling di atas"],
-      ["🍓", "ra - sp - be - ri", "Raspberi", "Buah beri merah kaya antioksidan"],
-      ["🌻", "bu - nga ma - ta - ha - ri", "Bunga Matahari", "Bunga kuning besar menghadap cahaya"],
-      ["🏫", "se - ko - lah", "Sekolah", "Tempat kita belajar bersama ibu guru"],
-      ["📚", "per - pus - ta - ka - an", "Perpustakaan", "Ruangan penuh buku untuk dibaca"]
+      ["🌻", "ma - ta - ha - ri", "Bunga", "Tumbuhan kuning menghadap cahaya"],
+      ["🏫", "se - ko - lah", "Sekolah", "Tempat kita belajar bersama guru"],
+      ["🌳", "po - hon", "Pohon", "Tumbuhan besar berbatang kayu"],
+      ["🦉", "bu - rung han - tu", "Burung Hantu", "Burung bermata bulat terjaga malam"],
+      ["🦘", "ka - ngu - ru", "Kanguru", "Hewan melompat berkantong di perut"],
+      ["🦓", "ze - bra", "Zebra", "Hewan mirip kuda berbelang hitam putih"]
     ];
 
     function buatBankMembaca(lvl) {
       const sumber = lvl === 'mudah' ? dataMembacaMudah : (lvl === 'sedang' ? dataMembacaSedang : dataMembacaSulit);
-      const semuaKata = sumber.map(item => item);
-      return acakArray(sumber).slice(0, 15).map(([emoji, suku, jawaban, petunjuk]) => {
+      const semuaKata = sumber.map(item => item[2]);
+      return acakArray(sumber).slice(0, 20).map(([emoji, suku, jawaban, petunjuk]) => {
         const pengecoh = acakArray(semuaKata.filter(k => k !== jawaban)).slice(0, 3);
         const opsi = acakArray([jawaban, ...pengecoh]);
         return {
@@ -263,37 +269,49 @@
     }
 
         const dataHewanMentah = [
-      ["🦁", "Singa", "Aku adalah raja hutan dengan surai lebat dan suara mengaum!", "mudah"],
-      ["🐘", "Gajah", "Tubuhku sangat besar, telingaku lebar, dan aku punya belalai panjang!", "mudah"],
+      ["🦁", "Singa", "Aku raja hutan dengan surai lebat dan suara mengaum!", "mudah"],
+      ["🐘", "Gajah", "Tubuhku besar, telingaku lebar, dan aku punya belalai panjang!", "mudah"],
       ["🐱", "Kucing", "Aku hewan peliharaan lucu yang suka mengeong meong!", "mudah"],
-      ["🐶", "Anjing", "Aku sahabat manusia yang setia dan suka menggonggong guk guk!", "mudah"],
-      ["🐮", "Sapi", "Aku makan rumput, bersuara moo, dan menghasilkan susu segar!", "mudah"],
+      ["🐶", "Anjing", "Aku sahabat manusia yang setia dan menggonggong guk guk!", "mudah"],
+      ["🐮", "Sapi", "Aku makan rumput, bersuara moo, dan menghasilkan susu!", "mudah"],
       ["🐔", "Ayam", "Aku berkokok kukuruyuk membangunkanmu di pagi hari!", "mudah"],
       ["🦆", "Bebek", "Paruhku pipih, kakiku berselaput, dan suaraku kwek kwek!", "mudah"],
       ["🐰", "Kelinci", "Telingaku panjang, aku suka melompat dan makan wortel!", "mudah"],
-      ["🐵", "Monyet", "Aku suka bergelantungan di pohon dan makan buah pisang!", "mudah"],
-      ["🐟", "Ikan", "Aku hidup di dalam air dan berenang menggunakan sirip!", "mudah"],
+      ["🐵", "Monyet", "Aku suka bergelantungan di pohon dan makan pisang!", "mudah"],
+      ["🐟", "Ikan", "Aku hidup di dalam air dan berenang memakai sirip!", "mudah"],
       ["🐸", "Katak", "Aku melompat di kolam dan bersuara teot teblung!", "mudah"],
       ["🐝", "Lebah", "Aku terbang di bunga dan menghasilkan madu manis!", "mudah"],
-      ["🦋", "Kupu-kupu", "Sayapku warna-warni indah dan aku suka hinggap di bunga!", "mudah"],
+      ["🦋", "Kupu-kupu", "Sayapku warna-warni indah dan suka hinggap di bunga!", "mudah"],
       ["🐎", "Kuda", "Aku bisa berlari sangat kencang dan ditunggangi!", "mudah"],
       ["🐐", "Kambing", "Aku berjenggot, bertanduk kecil, dan bersuara embek!", "mudah"],
-      ["🦒", "Jerapah", "Leherku sangat panjang untuk memakan daun di pucuk pohon!", "sedang"],
-      ["🦓", "Zebra", "Tubuhku mirip kuda dengan garis-garis belang hitam dan putih!", "sedang"],
+      ["🐷", "Babi", "Hidungku pesek, tubuhku gemuk, dan ekorku melingkar!", "mudah"],
+      ["🐢", "Kura-kura", "Aku berjalan pelan membawa rumah tempurung di punggung!", "mudah"],
+      ["🐍", "Ular", "Tubuhku panjang tanpa kaki dan aku bergerak melata!", "mudah"],
+      ["🐜", "Semut", "Tubuhku kecil mungil tapi kuat mengangkat makanan!", "mudah"],
+      ["🐦", "Burung", "Aku punya sayap berbulu dan terbang bebas di langit!", "mudah"],
+
+      ["🦒", "Jerapah", "Leherku sangat panjang untuk makan daun di pucuk pohon!", "sedang"],
+      ["🦓", "Zebra", "Tubuhku mirip kuda dengan garis belang hitam dan putih!", "sedang"],
       ["🐯", "Harimau", "Aku kucing besar bercorak loreng oranye dan hitam!", "sedang"],
       ["🐼", "Panda", "Aku beruang lucu hitam putih yang suka makan bambu!", "sedang"],
       ["🐨", "Koala", "Aku hewan berbulu abu-abu yang suka tidur memeluk pohon!", "sedang"],
       ["🦘", "Kanguru", "Aku melompat tinggi membawa bayiku di kantong perut!", "sedang"],
       ["🐑", "Domba", "Buluku tebal dan keriting seperti kapas yang lembut!", "sedang"],
-      ["🐧", "Penguin", "Aku burung hitam putih yang tinggal di tempat bersalju!", "sedang"],
+      ["🐧", "Penguin", "Aku burung hitam putih yang tinggal di kutub bersalju!", "sedang"],
       ["🦉", "Burung Hantu", "Mataku bulat besar dan aku terjaga di malam hari!", "sedang"],
-      ["🐢", "Kura-kura", "Aku berjalan pelan membawa rumah tempurung di punggung!", "sedang"],
       ["🐊", "Buaya", "Aku reptil besar bergigi tajam yang hidup di sungai!", "sedang"],
-      ["🐍", "Ular", "Tubuhku panjang tanpa kaki dan aku bergerak melata!", "sedang"],
       ["🐳", "Paus", "Aku hewan laut raksasa yang menyemburkan air dari punggung!", "sedang"],
       ["🐬", "Lumba-lumba", "Aku hewan laut cerdas yang suka melompat bersahabat!", "sedang"],
       ["🦀", "Kepiting", "Aku berjalan menyamping dan punya dua capit besar!", "sedang"],
-      ["🦚", "Merak", "Aku memiliki bulu ekor warna-warni yang sangat indah saat mengembang!", "sulit"],
+      ["🦈", "Hiu", "Aku ikan besar di lautan dengan sirip tajam di punggung!", "sedang"],
+      ["🦐", "Udang", "Tubuhku kecil melengkung dan aku hidup di air!", "sedang"],
+      ["🐌", "Siput", "Aku hewan bertubuh lunak yang membawa cangkang spiral!", "sedang"],
+      ["🐫", "Unta", "Aku hidup di padang pasir dan punya punuk di punggung!", "sedang"],
+      ["🦛", "Kuda Nil", "Tubuhku besar bulat dan aku suka berendam di sungai!", "sedang"],
+      ["🦏", "Badak", "Aku hewan besar berkulit tebal dengan cula di hidung!", "sedang"],
+      ["🐿️", "Tupai", "Ekorku berbulu lebat dan aku suka mengumpulkan kacang!", "sedang"],
+
+      ["🦚", "Merak", "Aku punya bulu ekor warna-warni indah saat mengembang!", "sulit"],
       ["🦩", "Flamingo", "Aku burung merah muda yang suka berdiri dengan satu kaki!", "sulit"],
       ["🦖", "Dinosaurus", "Aku hewan purba raksasa yang hidup jutaan tahun lalu!", "sulit"],
       ["🐙", "Gurita", "Aku hidup di laut dan memiliki delapan lengan tentakel!", "sulit"],
@@ -301,19 +319,24 @@
       ["🐡", "Ikan Buntal", "Aku menggembungkan tubuhku seperti bola berduri saat terkejut!", "sulit"],
       ["🐞", "Kepik", "Aku kumbang mungil berwarna merah dengan bintik hitam!", "sulit"],
       ["🕷️", "Laba-laba", "Aku berkaki delapan dan pandai merajut jaring!", "sulit"],
-      ["🐌", "Siput", "Aku hewan bertubuh lunak yang membawa cangkang spiral!", "sulit"],
-      ["🐫", "Unta", "Aku hidup di padang pasir dan punya punuk di punggungku!", "sulit"],
-      ["🦛", "Kuda Nil", "Tubuhku besar bulat dan aku suka berendam di sungai!", "sulit"],
-      ["🦏", "Badak", "Aku hewan besar berkulit tebal dengan cula di hidungku!", "sulit"],
-      ["🐿️", "Tupai", "Ekorku berbulu lebat dan aku suka mengumpulkan kacang!", "sulit"],
       ["🦔", "Landak", "Punggungku dipenuhi duri tajam untuk melindungi diri!", "sulit"],
-      ["🦅", "Elang", "Aku burung gagah bersayap lebar yang terbang sangat tinggi!", "sulit"]
+      ["🦅", "Elang", "Aku burung gagah bersayap lebar yang terbang sangat tinggi!", "sulit"],
+      ["🦇", "Kelelawar", "Aku hewan terbang yang tidur terbalik di siang hari!", "sulit"],
+      ["🦦", "Berang-berang", "Aku pandai berenang dan suka memakan ikan di sungai!", "sulit"],
+      ["🦥", "Kungkang", "Aku bergerak sangat lambat dan bergelantungan di dahan!", "sulit"],
+      ["🦙", "Llama", "Aku berleher panjang berbulu tebal dari pegunungan!", "sulit"],
+      ["🦫", "Biwara", "Gigiku kuat untuk menebang kayu membangun bendungan!", "sulit"],
+      ["🦨", "Sigung", "Aku berbulu hitam bergaris putih yang pandai membela diri!", "sulit"],
+      ["🦡", "Luwak", "Aku hewan malam gesit yang suka makan buah-buahan!", "sulit"],
+      ["🦭", "Anjing Laut", "Aku pandai berenang di laut dingin dan menepuk sirip!", "sulit"],
+      ["🦑", "Cumi-cumi", "Aku hidup di laut dan bisa menyemprotkan tinta hitam!", "sulit"],
+      ["🦂", "Kalajengking", "Aku bercapit dan punya ekor melengkung di belakang!", "sulit"]
     ];
 
     function buatBankHewan(lvl) {
-      const pool = dataHewanMentah.filter(h => h === lvl);
-      const semuaHewan = dataHewanMentah.map(item => item);
-      return acakArray(pool).slice(0, 15).map(([emoji, nama, ciri]) => {
+      const pool = dataHewanMentah.filter(h => h[3] === lvl);
+      const semuaHewan = dataHewanMentah.map(item => item[1]);
+      return acakArray(pool).slice(0, 20).map(([emoji, nama, ciri]) => {
         const pengecoh = acakArray(semuaHewan.filter(h => h !== nama)).slice(0, 3);
         const opsi = acakArray([nama, ...pengecoh]);
         return {
@@ -342,33 +365,33 @@
       ["⛄", "Putih", "Salju dingin dan kapas berwarna apa?", "mudah"],
       ["⚽", "Lingkaran", "Bola sepak dan roda sepeda berbentuk apa?", "mudah"],
       ["🍕", "Segitiga", "Potongan kue pizza biasanya berbentuk apa?", "mudah"],
-      ["💎", "Belah Ketupat", "Bentuk seperti layang-layang atau permata berkilau adalah?", "sedang"],
-      ["🌙", "Bulan Sabit", "Bentuk melengkung seperti bulan di malam hari adalah?", "sedang"],
+      ["💎", "Belah Ketupat", "Bentuk seperti layang-layang berkilau adalah?", "sedang"],
+      ["🌙", "Bulan Sabit", "Bentuk melengkung seperti bulan malam adalah?", "sedang"],
       ["🥚", "Oval", "Bentuk lonjong seperti telur ayam disebut apa?", "sedang"],
-      ["🐼", "Hitam dan Putih", "Beruang panda memiliki bulu berwarna apa?", "sedang"],
+      ["🐼", "Hitam Putih", "Beruang panda memiliki bulu berwarna apa?", "sedang"],
       ["🦩", "Merah Muda", "Burung flamingo dan bunga sakura berwarna apa?", "sedang"],
       ["🐘", "Abu-abu", "Tubuh gajah yang besar berwarna apa?", "sedang"],
       ["🚪", "Persegi Panjang", "Pintu rumah dan papan tulis berbentuk apa?", "sedang"],
-      ["🍉", "Merah dan Hijau", "Buah semangka kulit dan dagingnya berwarna apa?", "sedang"],
-      ["🚦", "Merah, Kuning, Hijau", "Lampu lalu lintas memiliki warna apa saja?", "sedang"],
+      ["🍉", "Merah Hijau", "Buah semangka kulit dan dagingnya berwarna apa?", "sedang"],
+      ["🚦", "Merah Kuning Hijau", "Lampu lalu lintas memiliki warna apa saja?", "sedang"],
       ["🌈", "Tujuh Warna", "Pelangi indah di langit memiliki berapa warna?", "sulit"],
-      ["🛑", "Segi Delapan", "Rambu berhenti berwarna merah berbentuk segi berapa?", "sulit"],
-      ["🍯", "Segi Enam", "Sarang lebah madu tersusun dari bentuk segi berapa?", "sulit"],
+      ["🛑", "Segi Delapan", "Rambu berhenti merah berbentuk segi berapa?", "sulit"],
+      ["🍯", "Segi Enam", "Sarang lebah madu tersusun dari segi berapa?", "sulit"],
       ["🧊", "Kubus", "Es batu dan dadu mainan berbentuk bangun apa?", "sulit"],
-      [" Pyramida", "Limas Segitiga", "Atap tenda kemah dan piramida berbentuk bangun apa?", "sulit"],
+      ["⛺", "Limas", "Atap tenda kemah dan piramida berbentuk bangun apa?", "sulit"],
       ["🥫", "Tabung", "Kaleng susu dan gelas minum berbentuk bangun apa?", "sulit"]
     ];
 
     function buatBankBentuk(lvl) {
-      let pool = dataBentukMentah.filter(x => x === lvl);
-      while (pool.length < 15) pool = pool.concat(dataBentukMentah);
-      const semuaJawaban = [...new Set(dataBentukMentah.map(x => x))];
-      return acakArray(pool).slice(0, 15).map(([emoji, jawaban, tanya]) => {
+      let pool = dataBentukMentah.filter(x => x[3] === lvl);
+      while (pool.length < 20) pool = pool.concat(acakArray(dataBentukMentah));
+      const semuaJawaban = [...new Set(dataBentukMentah.map(x => x[1]))];
+      return acakArray(pool).slice(0, 20).map(([emoji, jawaban, tanya]) => {
         const pengecoh = acakArray(semuaJawaban.filter(j => j !== jawaban)).slice(0, 3);
         const opsi = acakArray([jawaban, ...pengecoh]);
         return {
           tanya: tanya,
-          visual: `<span class="anim-bounce" style="font-size:3.6rem;">${emoji.trim()}</span>`,
+          visual: `<span class="anim-bounce" style="font-size:3.6rem;">${emoji}</span>`,
           baca: tanya,
           opsi: opsi,
           kunci: opsi.indexOf(jawaban)
@@ -380,7 +403,7 @@
       const soalList = [];
       const buah = ["🍎", "🍓", "🍊", "🍌", "⭐", "🎈", "🍩", "⚽", "🍬", "🚗"];
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 20; i++) {
         if (lvl === 'mudah') {
           const a = Math.floor(Math.random() * 9) + 1;
           const b = Math.floor(Math.random() * 9) + 1;
@@ -443,7 +466,9 @@
       ["🎒", "TAS", "Wadah buku sekolah"], ["👕", "BAJU", "Pakaian yang dipakai"],
       ["🧢", "TOPI", "Pelindung kepala dari panas"], ["⏰", "JAM", "Penunjuk waktu di dinding"],
       ["🥛", "SUSU", "Minuman putih menyehatkan"], ["🍞", "ROTI", "Makanan empuk sarapan"],
-      ["🎂", "KUE", "Makanan manis ulang tahun"], ["🚢", "KAPAL", "Kendaraan berlayar di laut"]
+      ["🎂", "KUE", "Makanan manis ulang tahun"], ["🚢", "KAPAL", "Kendaraan berlayar di laut"],
+      ["🏠", "RUMAH", "Tempat tinggal keluarga"], ["🪑", "KURSI", "Tempat untuk duduk"],
+      ["🛏️", "KASUR", "Tempat tidur yang empuk"], ["🌹", "BUNGA", "Tumbuhan cantik dan harum"]
     ];
 
     const bankSusunSedang = [
@@ -454,7 +479,9 @@
       ["🍌", "PISANG", "Buah kuning panjang"], ["🍊", "JERUK", "Buah oranye segar"],
       ["🍇", "ANGGUR", "Buah ungu kecil-kecil"], ["🥭", "MANGGA", "Buah manis harum"],
       ["🍍", "NANAS", "Buah kuning bermahkota"], ["🥕", "WORTEL", "Sayuran oranye sehat"],
-      ["🌽", "JAGUNG", "Sayuran kuning berbiji"], ["🍅", "TOMAT", "Buah merah untuk sayur"]
+      ["🌽", "JAGUNG", "Sayuran kuning berbiji"], ["🍅", "TOMAT", "Buah merah untuk sayur"],
+      ["🌙", "BULAN", "Bersinar di malam hari"], ["🥚", "TELUR", "Makanan lonjong dari ayam"],
+      ["🌳", "POHON", "Tumbuhan besar berdaun lebat"], ["🐼", "PANDA", "Beruang hitam putih pemakan bambu"]
     ];
 
     const bankSusunSulit = [
@@ -465,7 +492,9 @@
       ["🌈", "PELANGI", "Warna-warni setelah hujan"], ["☂️", "PAYUNG", "Pelindung saat turun hujan"],
       ["🐧", "PENGUIN", "Burung hitam putih di salju"], ["🐬", "LUMBA", "Mamalia laut cerdas melompat"],
       ["🐙", "GURITA", "Hewan laut berlengan delapan"], ["🦒", "JERAPAH", "Hewan berleher sangat panjang"],
-      ["🦓", "ZEBRA", "Kuda belang hitam putih"], ["🐊", "BUAYA", "Reptil besar di sungai"]
+      ["🦓", "ZEBRA", "Kuda belang hitam putih"], ["🐊", "BUAYA", "Reptil besar di sungai"],
+      ["⭐", "BINTANG", "Berkelip indah di langit malam"], ["🐯", "HARIMAU", "Kucing besar loreng oranye hitam"],
+      ["🦘", "KANGURU", "Hewan melompat berkantong perut"], ["🦚", "MERAK", "Burung berekor indah mengembang"]
     ];
 
         let kategoriAktif = "", levelAktif = "", daftarSoal = [], nomor = 0, bintang = 0, sudahJawab = false;
@@ -477,9 +506,9 @@
     }
 
     function evaluasiSuaraSkor(skor, total) {
-      if (skor >= 13) {
+      if (skor >= 17) {
         return `Wih keren banget! Kamu dapat ${skor} dari ${total} bintang! Kamu memang Juara Super yang luar biasa hebat!`;
-      } else if (skor >= 8) {
+      } else if (skor >= 11) {
         return `Mantap sekali! Kamu dapat ${skor} dari ${total} bintang! Sedikit lagi jadi juara super, ayo coba lagi!`;
       } else {
         return `Wah semangat ya! Kamu dapat ${skor} dari ${total} bintang! Yuk latihan lagi pasti kamu bisa jadi juara!`;
@@ -494,7 +523,7 @@
             <img src="irsyad.jpeg" alt="Foto Irsyad" class="anim-bounce" style="width:110px; height:110px; object-fit:cover; object-position:top; border-radius:50%; border:4px solid #38bdf8; box-shadow:0 6px 14px rgba(2,132,199,0.25); background:#e0f2fe;" />
           </div>
           <h2 style="color:#0284c7; font-size:1.22rem; margin-bottom:4px;">Halo! Ayo Pilih Petualanganmu!</h2>
-          <p style="color:#64748b; font-size:0.88rem;">Setiap permainan punya 3 level seru & 15 soal acak!</p>
+          <p style="color:#64748b; font-size:0.88rem;">Setiap permainan punya 3 level seru & 20 soal acak!</p>
         </div>
         <button class="menu-btn bg-baca" onclick="pilihLevel('membaca', '🔤 Belajar Membaca')">
           <span>🔤 Belajar Membaca</span><span class="badge-jumlah">3 Level ▶️</span>
@@ -526,16 +555,16 @@
         <div class="card">
           <div style="font-size:2.8rem; margin-bottom:6px;" class="anim-bounce">🎯✨</div>
           <h2 style="color:#0284c7; font-size:1.25rem; margin-bottom:4px;">${judul}</h2>
-          <p style="color:#64748b; font-size:0.9rem;">Pilih tingkat tantanganmu (15 Soal):</p>
+          <p style="color:#64748b; font-size:0.9rem;">Pilih tingkat tantanganmu (20 Soal Acak):</p>
         </div>
         <button class="menu-btn lvl-mudah" onclick="jalankanMode('${kat}', 'mudah')">
-          <span>🌱 Level Pemula (Mudah)</span><span class="badge-jumlah">15 Soal ▶️</span>
+          <span>🌱 Level Pemula (Mudah)</span><span class="badge-jumlah">20 Soal ▶️</span>
         </button>
         <button class="menu-btn lvl-sedang" onclick="jalankanMode('${kat}', 'sedang')">
-          <span>🚀 Level Jagoan (Sedang)</span><span class="badge-jumlah">15 Soal ▶️</span>
+          <span>🚀 Level Jagoan (Sedang)</span><span class="badge-jumlah">20 Soal ▶️</span>
         </button>
         <button class="menu-btn lvl-sulit" onclick="jalankanMode('${kat}', 'sulit')">
-          <span>🏆 Level Juara Super (Sulit)</span><span class="badge-jumlah">15 Soal ▶️</span>
+          <span>🏆 Level Juara Super (Sulit)</span><span class="badge-jumlah">20 Soal ▶️</span>
         </button>`;
     }
 
@@ -561,8 +590,8 @@
         ucapkan(pesanSkor);
         document.getElementById("app").innerHTML = `
           <div class="card">
-            <div style="font-size:3.8rem;" class="anim-bounce">${bintang >= 13 ? '🏆🎉' : (bintang >= 8 ? '🌟👏' : '💪😊')}</div>
-            <h2 style="color:#0284c7; margin:8px 0;">${bintang >= 13 ? 'Juara Super!' : (bintang >= 8 ? 'Jagoan Hebat!' : 'Tetap Semangat!')}</h2>
+            <div style="font-size:3.8rem;" class="anim-bounce">${bintang >= 17 ? '🏆🎉' : (bintang >= 11 ? '🌟👏' : '💪😊')}</div>
+            <h2 style="color:#0284c7; margin:8px 0;">${bintang >= 17 ? 'Juara Super!' : (bintang >= 11 ? 'Jagoan Hebat!' : 'Tetap Semangat!')}</h2>
             <p style="font-size:0.95rem; color:#475569; margin-bottom:10px;">${pesanSkor}</p>
             <div class="star-bar" style="font-size:1.3rem; display:inline-block; margin-bottom:12px;">⭐ ${bintang} / ${daftarSoal.length} Bintang</div>
             <br><button class="btn-aksi" onclick="jalankanMode('${kategoriAktif}', '${levelAktif}')">🔄 Main Lagi (Soal Baru)</button>
@@ -617,7 +646,7 @@
         let daftarSusun = [], indexSusun = 0, jawabanSusun = [], hurufAcak = [];
     function mulaiSusunHuruf(lvl) {
       const sumber = lvl === 'mudah' ? bankSusunMudah : (lvl === 'sedang' ? bankSusunSedang : bankSusunSulit);
-      daftarSusun = acakArray(sumber).slice(0, 15);
+      daftarSusun = acakArray(sumber).slice(0, 20);
       indexSusun = 0; bintang = 0;
       muatLevelSusun();
     }
