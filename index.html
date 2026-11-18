@@ -16,7 +16,7 @@
     @keyframes popIn { 0% { transform: scale(0.95); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
     .anim-bounce { display: inline-block; animation: bounce 1.8s infinite; }
-    .menu-btn { width: 100%; border: none; border-radius: 18px; padding: 14px 14px; margin-bottom: 10px; color: #fff; font-size: 1.02rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; box-shadow: 0 5px 0 rgba(0,0,0,0.18); touch-action: manipulation; text-align: left; }
+    .menu-btn { width: 100%; border: none; border-radius: 18px; padding: 14px 14px; margin-bottom: 10px; color: #fff; font-size: 1.02rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; box-shadow: 0 5px 0 rgba(0,0,0,0.18); touch-action: manipulation; text-align: left; text-decoration: none; }
     .menu-btn:active { transform: translateY(3px); box-shadow: none; }
     .badge-jumlah { background: rgba(255,255,255,0.28); padding: 4px 9px; border-radius: 10px; font-size: 0.78rem; white-space: nowrap; flex-shrink: 0; }
     .bg-baca { background: linear-gradient(135deg, #f43f5e, #fb7185); }
@@ -58,9 +58,6 @@
     .btn-huruf { width: 42px; height: 42px; border-radius: 12px; border: 2px solid #f59e0b; background: #fef3c7; color: #b45309; font-size: 1.3rem; font-weight: 700; cursor: pointer; box-shadow: 0 3px 0 #f59e0b; touch-action: manipulation; }
     .btn-huruf:disabled { opacity: 0.35; cursor: default; box-shadow: none; transform: translateY(2px); }
     .btn-aksi { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; border: none; padding: 13px 22px; border-radius: 16px; font-size: 1.05rem; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 0 #0369a1; touch-action: manipulation; }
-    .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 16px; overflow: hidden; background: #000; margin-top: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .iqro-item { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 14px; padding: 12px; margin-bottom: 10px; text-align: left; }
     @media (min-width: 600px) {
       header h1 { font-size: 1.5rem; }
       .card { padding: 24px 20px; border-radius: 28px; }
@@ -522,14 +519,14 @@
             <img src="irsyad.jpeg" alt="Foto Irsyad" class="anim-bounce" style="width:110px; height:110px; object-fit:cover; object-position:top; border-radius:50%; border:4px solid #38bdf8; box-shadow:0 6px 14px rgba(2,132,199,0.25); background:#e0f2fe;" />
           </div>
           <h2 style="color:#0284c7; font-size:1.22rem; margin-bottom:4px;">Halo! Ayo Pilih Petualanganmu!</h2>
-          <p style="color:#64748b; font-size:0.88rem;">Pilih permainan edukasi seru dan materi belajar untukmu!</p>
+          <p style="color:#64748b; font-size:0.88rem;">Pilih permainan edukasi seru dan video belajar untukmu!</p>
         </div>
-        <button class="menu-btn bg-ngaji" onclick="tampilIqro()">
-          <span>📖 Iqro' Belajar Mengaji</span><span class="badge-jumlah">Materi ▶️</span>
-        </button>
-        <button class="menu-btn bg-sholat" onclick="tampilVideoSholat()">
-          <span>🕋 Video Belajar Sholat</span><span class="badge-jumlah">Video ▶️</span>
-        </button>
+        <a class="menu-btn bg-ngaji" href="https://www.youtube.com/results?search_query=belajar+iqro+1+sampai+jilid+6" target="_blank">
+          <span>📖 Iqro' Belajar Mengaji</span><span class="badge-jumlah">Buka Video ▶️</span>
+        </a>
+        <a class="menu-btn bg-sholat" href="https://www.youtube.com/results?search_query=video+panduan+tata+cara+sholat+lengkap+untuk+anak" target="_blank">
+          <span>🕋 Video Belajar Sholat</span><span class="badge-jumlah">Buka Video ▶️</span>
+        </a>
         <button class="menu-btn bg-baca" onclick="pilihLevel('membaca', '🔤 Belajar Membaca')">
           <span>🔤 Belajar Membaca</span><span class="badge-jumlah">3 Level ▶️</span>
         </button>
@@ -548,55 +545,6 @@
         <button class="menu-btn bg-memori" onclick="pilihLevel('memori', '🧠 Tebak Gambar Kembar')">
           <span>🧠 Tebak Gambar Kembar</span><span class="badge-jumlah">3 Level ▶️</span>
         </button>`;
-    }
-
-    function tampilIqro() {
-      mainkanEfek('klik');
-      ucapkan("Materi Iqro Belajar Mengaji");
-      document.getElementById("app").innerHTML = `
-        <div class="top-bar">
-          <button class="bg-kembali" onclick="tampilBeranda()">⬅️ Menu Utama</button>
-        </div>
-        <div class="card">
-          <div style="font-size:2.8rem; margin-bottom:6px;" class="anim-bounce">📖✨</div>
-          <h2 style="color:#0284c7; font-size:1.25rem; margin-bottom:4px;">Iqro' Belajar Mengaji</h2>
-          <p style="color:#64748b; font-size:0.9rem; margin-bottom:12px;">Panduan belajar membaca Al-Qur'an dari dasar:</p>
-          
-          <div class="iqro-item">
-            <h3 style="color:#0d9488; font-size:1.05rem; margin-bottom:4px;">✨ Iqro' Jilid 1</h3>
-            <p style="font-size:0.88rem; color:#475569;">Mengenal huruf-huruf Hijaiyah tunggal berharakat Fathah (A).</p>
-          </div>
-          <div class="iqro-item">
-            <h3 style="color:#0d9488; font-size:1.05rem; margin-bottom:4px;">✨ Iqro' Jilid 2</h3>
-            <p style="font-size:0.88rem; color:#475569;">Belajar huruf sambung, harakat Kasrah (I) dan Dammah (U).</p>
-          </div>
-          <div class="iqro-item">
-            <h3 style="color:#0d9488; font-size:1.05rem; margin-bottom:4px;">✨ Iqro' Jilid 3 & Seterusnya</h3>
-            <p style="font-size:0.88rem; color:#475569;">Mempelajari bacaan panjang (Mad), Tanwin, Sukun, dan Tasydid.</p>
-          </div>
-          <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLp720p868_x8v6nN1x9V2n61UqXN4W5Vv" title="Belajar Iqro" allowfullscreen></iframe>
-          </div>
-        </div>`;
-    }
-
-    function tampilVideoSholat() {
-      mainkanEfek('klik');
-      ucapkan("Video Panduan Belajar Sholat");
-      document.getElementById("app").innerHTML = `
-        <div class="top-bar">
-          <button class="bg-kembali" onclick="tampilBeranda()">⬅️ Menu Utama</button>
-        </div>
-        <div class="card">
-          <div style="font-size:2.8rem; margin-bottom:6px;" class="anim-bounce">🕋✨</div>
-          <h2 style="color:#0284c7; font-size:1.25rem; margin-bottom:4px;">Video Panduan Sholat</h2>
-          <p style="color:#64748b; font-size:0.9rem; margin-bottom:12px;">Panduan tata cara wudhu dan gerakan sholat lengkap:</p>
-          
-          <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/Wl7M3Yp0v88" title="Video Panduan Sholat Anak" allowfullscreen></iframe>
-          </div>
-          <p style="font-size:0.85rem; color:#64748b; margin-top:10px;">Tonton video di atas untuk belajar gerakan sholat yang benar dari takbir hingga salam bersama anak-anak.</p>
-        </div>`;
     }
 
     function pilihLevel(kat, judul) {
