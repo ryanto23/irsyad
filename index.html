@@ -58,6 +58,9 @@
     .btn-huruf { width: 42px; height: 42px; border-radius: 12px; border: 2px solid #f59e0b; background: #fef3c7; color: #b45309; font-size: 1.3rem; font-weight: 700; cursor: pointer; box-shadow: 0 3px 0 #f59e0b; touch-action: manipulation; }
     .btn-huruf:disabled { opacity: 0.35; cursor: default; box-shadow: none; transform: translateY(2px); }
     .btn-aksi { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; border: none; padding: 13px 22px; border-radius: 16px; font-size: 1.05rem; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 0 #0369a1; touch-action: manipulation; }
+    .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 16px; overflow: hidden; background: #000; margin-top: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .iqro-item { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 14px; padding: 12px; margin-bottom: 10px; text-align: left; }
     @media (min-width: 600px) {
       header h1 { font-size: 1.5rem; }
       .card { padding: 24px 20px; border-radius: 28px; }
@@ -177,7 +180,7 @@
       return salinan;
     }
 
-    // --- DATA BANK SOAL LAMA ---
+    // --- DATA BANK SOAL UTAMA ---
     const dataMembacaMudah = [
       ["🍎", "a - pel", "Apel", "Buah merah yang manis dan renyah"],
       ["🐱", "ku - cing", "Kucing", "Hewan lucu yang suka mengeong"],
@@ -495,83 +498,6 @@
       ["🦘", "KANGURU", "Hewan melompat berkantong perut"], ["🦚", "MERAK", "Burung berekor indah mengembang"]
     ];
 
-    // --- DATA BARU: BELAJAR NGAJI & SHOLAT ---
-    const dataNgajiMentah = [
-      ["أ", "Alif", "Huruf Hijaiyah pertama dibaca Alif", "mudah"],
-      ["ب", "Ba", "Huruf dengan satu titik di bawah dibaca Ba", "mudah"],
-      ["ت", "Ta", "Huruf dengan dua titik di atas dibaca Ta", "mudah"],
-      ["ث", "Tsa", "Huruf dengan tiga titik di atas dibaca Tsa", "mudah"],
-      ["ج", "Jim", "Huruf dengan satu titik di tengah dibaca Jim", "mudah"],
-      ["ح", "Ha", "Huruf tanpa titik berlubang dibaca Ha", "mudah"],
-      ["خ", "Kha", "Huruf dengan satu titik di atas kepala dibaca Kha", "mudah"],
-      ["د", "Dal", "Huruf melengkung menghadap ke kiri dibaca Dal", "mudah"],
-      ["ذ", "Dzal", "Huruf Dal beritik satu di atas dibaca Dzal", "mudah"],
-      ["ر", "Ra", "Huruf meluncur ke bawah dibaca Ra", "mudah"],
-      ["ز", "Zai", "Huruf Ra beritik satu di atas dibaca Zai", "mudah"],
-      ["س", "Sin", "Huruf berombak tiga gigi dibaca Sin", "mudah"],
-      ["ش", "Syin", "Huruf Sin dengan tiga titik di atas dibaca Syin", "sedang"],
-      ["ص", "Shad", "Huruf kepala lonjong besar dibaca Shad", "sedang"],
-      ["ض", "Dhad", "Huruf Shad beritik satu di atas dibaca Dhad", "sedang"],
-      ["ط", "Tho", "Huruf bergaris tegak bertopi dibaca Tho", "sedang"],
-      ["ظ", "Zho", "Huruf Tho beritik satu di atas dibaca Zho", "sedang"],
-      ["ع", "Ain", "Huruf seperti angka tiga terbuka dibaca Ain", "sedang"],
-      ["غ", "Ghain", "Huruf Ain beritik satu di atas dibaca Ghain", "sedang"],
-      ["ف", "Fa", "Huruf melingkar bertitik satu di atas dibaca Fa", "sedang"],
-      ["ق", "Qaf", "Huruf melingkar bertitik dua di atas dibaca Qaf", "sulit"],
-      ["ك", "Kaf", "Huruf berbentuk mirip cangkir berdiri dibaca Kaf", "sulit"],
-      ["ل", "Lam", "Huruf tangkai panjang melengkung dibaca Lam", "sulit"],
-      ["م", "Mim", "Huruf melingkar kecil bertangkai bawah dibaca Mim", "sulit"],
-      ["ن", "Nun", "Huruf cekung bertitik satu di tengah dibaca Nun", "sulit"],
-      ["و", "Waw", "Huruf kepala kecil berekor melengkung dibaca Waw", "sulit"],
-      ["ه", "Ha", "Huruf bulat ganda di tengah dibaca Ha", "sulit"],
-      ["لا", "Lam Alif", "Gabungan huruf Lam dan Alif dibaca Lam Alif", "sulit"],
-      ["ء", "Hamzah", "Huruf bentuk kecil di atas garis dibaca Hamzah", "sulit"],
-      ["ي", "Ya", "Huruf ekor bebek melengkung bertitik dua di bawah dibaca Ya", "sulit"]
-    ];
-
-    function buatBankNgaji(lvl) {
-      const pool = dataNgajiMentah.filter(h => h[3] === lvl || (lvl === 'sedang' && h[3] === 'mudah') || (lvl === 'sulit'));
-      const semuaNama = dataNgajiMentah.map(item => item[1]);
-      return acakArray(dataNgajiMentah).slice(0, 20).map(([huruf, nama, keterangan]) => {
-        const pengecoh = acakArray(semuaNama.filter(n => n !== nama)).slice(0, 3);
-        const opsi = acakArray([nama, ...pengecoh]);
-        return {
-          tanya: `Huruf Hijaiyah apakah ini? (${keterangan})`,
-          visual: `<span class="anim-bounce" style="font-size:4rem; color:#0d9488; font-family:serif;">${huruf}</span><div style="font-size:0.9rem; color:#475569; margin-top:6px;">"${keterangan}"</div>`,
-          baca: `Huruf hijaiyah ${nama}. ${keterangan}`,
-          opsi: opsi,
-          kunci: opsi.indexOf(nama)
-        };
-      });
-    }
-
-    const dataSholatMentah = [
-      ["🧍‍♂️", "Berdiri Tegak", "Posisi awal tubuh tegak menghadap kiblat saat sholat wajib"],
-      ["🤲", "Takbiratul Ihram", "Mengangkat kedua tangan sambil mengucapkan Allahu Akbar"],
-      ["📖", "Membaca Al-Fatihah", "Membaca surah pembuka dalam setiap rakaat sholat"],
-      ["🙇‍♂️", "Rukuk", "Mmembungkuk dengan kedua tangan memegang lutut seraya membaca Subhana robbiyal 'azimi"],
-      ["🧍‍♂️", "I'tidal", "Bangkit dari rukuk berdiri tegak membaca Sami'allahu liman hamidah"],
-      ["🛐", "Sujud", "Meletakkan dahi, hidung, kedua tangan, lutut, dan ujung kaki di lantai"],
-      ["🧎‍♂️", "Duduk di Antara Dua Sujud", "Duduk dengan membentangkan telapak kaki kiri dan mendudukinya"],
-      ["🧎‍♀️", "Tasyahud Akhir", "Duduk tasyahud pada rakaat terakhir sebelum salam"],
-      ["👋", "Salam", "Menengok ke kanan lalu ke kiri mengucapkan Assalamu'alaikum warahmatullah"]
-    ];
-
-    function buatBankSholat() {
-      const semuaGerakan = dataSholatMentah.map(item => item[1]);
-      return acakArray(dataSholatMentah).map(([emoji, gerakan, deskripsi]) => {
-        const pengecoh = acakArray(semuaGerakan.filter(g => g !== gerakan)).slice(0, 3);
-        const opsi = acakArray([gerakan, ...pengecoh]);
-        return {
-          tanya: `Tebak gerakan sholat berdasarkan petunjuk ini:`,
-          visual: `<span class="anim-bounce" style="font-size:3.8rem;">${emoji}</span><div style="font-size:0.95rem; color:#475569; margin-top:8px;">"${deskripsi}"</div>`,
-          baca: `Gerakan sholat apakah ini? ${deskripsi}`,
-          opsi: opsi,
-          kunci: opsi.indexOf(gerakan)
-        };
-      });
-    }
-
     // --- VARIABEL & STATE UTAMA ---
     let kategoriAktif = "", levelAktif = "", daftarSoal = [], nomor = 0, bintang = 0, sudahJawab = false;
 
@@ -599,13 +525,13 @@
             <img src="irsyad.jpeg" alt="Foto Irsyad" class="anim-bounce" style="width:110px; height:110px; object-fit:cover; object-position:top; border-radius:50%; border:4px solid #38bdf8; box-shadow:0 6px 14px rgba(2,132,199,0.25); background:#e0f2fe;" />
           </div>
           <h2 style="color:#0284c7; font-size:1.22rem; margin-bottom:4px;">Halo! Ayo Pilih Petualanganmu!</h2>
-          <p style="color:#64748b; font-size:0.88rem;">Pilih permainan edukasi seru dan interaktif untukmu!</p>
+          <p style="color:#64748b; font-size:0.88rem;">Pilih permainan edukasi seru dan video belajar untukmu!</p>
         </div>
-        <button class="menu-btn bg-ngaji" onclick="pilihLevel('ngaji', '📖 Belajar Mengaji')">
-          <span>📖 Belajar Mengaji (Hijaiyah)</span><span class="badge-jumlah">3 Level ▶️</span>
+        <button class="menu-btn bg-ngaji" onclick="tampilIqro()">
+          <span>📖 Iqro' Belajar Mengaji</span><span class="badge-jumlah">Materi ▶️</span>
         </button>
-        <button class="menu-btn bg-sholat" onclick="jalankanModeLangsung('sholat')">
-          <span>🕋 Belajar Gerakan Sholat</span><span class="badge-jumlah">Kuis ▶️</span>
+        <button class="menu-btn bg-sholat" onclick="tampilVideoSholat()">
+          <span>🕋 Video Belajar Sholat</span><span class="badge-jumlah">Video ▶️</span>
         </button>
         <button class="menu-btn bg-baca" onclick="pilihLevel('membaca', '🔤 Belajar Membaca')">
           <span>🔤 Belajar Membaca</span><span class="badge-jumlah">3 Level ▶️</span>
@@ -625,6 +551,55 @@
         <button class="menu-btn bg-memori" onclick="pilihLevel('memori', '🧠 Tebak Gambar Kembar')">
           <span>🧠 Tebak Gambar Kembar</span><span class="badge-jumlah">3 Level ▶️</span>
         </button>`;
+    }
+
+    function tampilIqro() {
+      mainkanEfek('klik');
+      ucapkan("Materi Iqro' Belajar Mengaji");
+      document.getElementById("app").innerHTML = `
+        <div class="top-bar">
+          <button class="bg-kembali" onclick="tampilBeranda()">⬅️ Menu Utama</button>
+        </div>
+        <div class="card">
+          <div style="font-size:2.8rem; margin-bottom:6px;" class="anim-bounce">📖✨</div>
+          <h2 style="color:#0284c7; font-size:1.25rem; margin-bottom:4px;">Iqro' Belajar Mengaji</h2>
+          <p style="color:#64748b; font-size:0.9rem; margin-bottom:12px;">Panduan belajar membaca Al-Qur'an dari dasar:</p>
+          
+          <div class="iqro-item">
+            <h3 style="color:#0d9488; font-size:1.05rem; margin-bottom:4px;">✨ Iqro' Jilid 1</h3>
+            <p style="font-size:0.88rem; color:#475569;">Mengenal huruf-huruf Hijaiyah tunggal berharakat Fathah (A).</p>
+          </div>
+          <div class="iqro-item">
+            <h3 style="color:#0d9488; font-size:1.05rem; margin-bottom:4px;">✨ Iqro' Jilid 2</h3>
+            <p style="font-size:0.88rem; color:#475569;">Belajar huruf sambung, harakat Kasrah (I) dan Dammah (U).</p>
+          </div>
+          <div class="iqro-item">
+            <h3 style="color:#0d9488; font-size:1.05rem; margin-bottom:4px;">✨ Iqro' Jilid 3 & Seterusnya</h3>
+            <p style="font-size:0.88rem; color:#475569;">Mempelajari bacaan panjang (Mad), Tanwin, Sukun, dan Tasydid.</p>
+          </div>
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLp720p868_x8v6nN1x9V2n61UqXN4W5Vv" title="Belajar Iqro" allowfullscreen></iframe>
+          </div>
+        </div>`;
+    }
+
+    function tampilVideoSholat() {
+      mainkanEfek('klik');
+      ucapkan("Video Panduan Belajar Sholat");
+      document.getElementById("app").innerHTML = `
+        <div class="top-bar">
+          <button class="bg-kembali" onclick="tampilBeranda()">⬅️ Menu Utama</button>
+        </div>
+        <div class="card">
+          <div style="font-size:2.8rem; margin-bottom:6px;" class="anim-bounce">🕋✨</div>
+          <h2 style="color:#0284c7; font-size:1.25rem; margin-bottom:4px;">Video Panduan Sholat</h2>
+          <p style="color:#64748b; font-size:0.9rem; margin-bottom:12px;">Panduan tata cara wudhu dan gerakan sholat lengkap:</p>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/Wl7M3Yp0v88" title="Video Panduan Sholat Anak" allowfullscreen></iframe>
+          </div>
+          <p style="font-size:0.85rem; color:#64748b; margin-top:10px;">Tonton video di atas untuk belajar gerakan sholat yang benar dari takbir hingga salam bersama anak-anak.</p>
+        </div>`;
     }
 
     function pilihLevel(kat, judul) {
@@ -650,15 +625,6 @@
         </button>`;
     }
 
-    function jalankanModeLangsung(kat) {
-      mainkanEfek('klik');
-      kategoriAktif = kat;
-      levelAktif = 'mudah';
-      daftarSoal = buatBankSholat();
-      nomor = 0; bintang = 0;
-      tampilSoal();
-    }
-
     function jalankanMode(kat, lvl) {
       mainkanEfek('klik');
       kategoriAktif = kat;
@@ -670,7 +636,6 @@
       else if (kat === 'berhitung') daftarSoal = buatBankBerhitung(lvl);
       else if (kat === 'hewan') daftarSoal = buatBankHewan(lvl);
       else if (kat === 'bentuk') daftarSoal = buatBankBentuk(lvl);
-      else if (kat === 'ngaji') daftarSoal = buatBankNgaji(lvl);
 
       nomor = 0; bintang = 0;
       tampilSoal();
@@ -687,7 +652,7 @@
             <h2 style="color:#0284c7; margin:8px 0;">Luar Biasa!</h2>
             <p style="font-size:0.95rem; color:#475569; margin-bottom:10px;">${pesanSkor}</p>
             <div class="star-bar" style="font-size:1.3rem; display:inline-block; margin-bottom:12px;">⭐ ${bintang} / ${daftarSoal.length} Bintang</div>
-            <br><button class="btn-aksi" onclick="${kategoriAktif === 'sholat' ? 'jalankanModeLangsung(\'sholat\')' : `jalankanMode('${kategoriAktif}', '${levelAktif}')`}">🔄 Main Lagi</button>
+            <br><button class="btn-aksi" onclick="jalankanMode('${kategoriAktif}', '${levelAktif}')">🔄 Main Lagi</button>
             <br><br><button class="bg-kembali" onclick="tampilBeranda()">🏠 Kembali ke Menu</button>
           </div>`;
         return;
@@ -709,7 +674,7 @@
         </div>
         <div class="progress-wrap"><div class="progress-fill" style="width:${persen}%"></div></div>
         <div class="card">
-          <div style="font-size:0.82rem; font-weight:700; color:#0284c7; margin-bottom:4px;">${kategoriAktif === 'sholat' ? '🕋 Gerakan Sholat' : namaLevel(levelAktif)}</div>
+          <div style="font-size:0.82rem; font-weight:700; color:#0284c7; margin-bottom:4px;">${namaLevel(levelAktif)}</div>
           <p style="font-size:1.05rem; font-weight:700; color:#334155; margin-bottom:4px;">${s.tanya}</p>
           <button class="btn-suara" onclick="ucapkan('${s.baca.replace(/'/g, "")}')">🔊 Dengarkan Soal</button>
           <div class="visual-box">${s.visual}</div>
